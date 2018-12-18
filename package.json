@@ -1,0 +1,27 @@
+{
+  "name": "ts-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "ts-node ./src/server.ts",
+    "start": "node ./dist/server.js",
+    "prod": "npm run build && npm start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "moment": "^2.23.0",
+    "pg": "^7.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/jsonwebtoken": "^8.3.0"
+  }
+}
