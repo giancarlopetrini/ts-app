@@ -1,6 +1,7 @@
 import * as jwt from "jsonwebtoken";
 import { Request, Response, NextFunction} from "express";
 import { ParsedJWT} from "../types";
+// import * as bcrypt from "bcrypt";
 import { env } from "../env";
 
 export class Auth {
@@ -30,7 +31,8 @@ export class Auth {
    * 
    * @returns next|error
    */
-  public isValid(req: Request, _res: Response, next: NextFunction) {
+  public isValid(req: Request, _res?: Response, next?: NextFunction) {
+    console.log(req.params);
     if (!req.headers.authorization) {
       throw new jwt.JsonWebTokenError('no authorization information in header')
     }
@@ -38,11 +40,12 @@ export class Auth {
 
     try {
       let decoded = jwt.verify(token, env.JWT_SECRET) as ParsedJWT;
-      console.log(typeof decoded);
       if (decoded.username !== req.params.username) {
         throw new jwt.JsonWebTokenError('invalid token');
       }
-      return next(); 
+      if (next) {return next()}
+      
+      return true; 
     } catch (err) {
       throw new jwt.JsonWebTokenError(err);
     }

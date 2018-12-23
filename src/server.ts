@@ -1,5 +1,6 @@
 import app from "./app";
-const port = 4040;
+import { env } from "./env";
+const port = env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Express listening on ${port}....`);
